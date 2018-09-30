@@ -19,3 +19,12 @@ const Route = use('Route')
 Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
+
+Route.group(() => {
+  Route.post('/save', 'ProductoController.store')
+  Route.get('/getAll', 'ProductoController.index')
+  Route.get('/:id', 'ProductoController.show')
+  Route.put('/:id', 'ProductoController.update')
+  Route.delete('/:id', 'ProductoController.delete')
+}).prefix('/producto')
+
