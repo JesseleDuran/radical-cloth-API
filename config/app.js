@@ -4,6 +4,20 @@
 const Env = use('Env')
 
 module.exports = {
+
+  /*
+  |--------------------------------------------------------------------------
+  | Application Name
+  |--------------------------------------------------------------------------
+  |
+  | This value is the name of your application and can used when you
+  | need to place the application's name in a email, view or
+  | other location.
+  |
+  */
+
+  name: Env.get('APP_NAME', 'AdonisJs'),
+
   /*
   |--------------------------------------------------------------------------
   | App Key
@@ -27,7 +41,7 @@ module.exports = {
     | below value to true.
     |
     */
-    allowMethodSpoofing: true,
+    allowMethodSpoofing: false,
 
     /*
     |--------------------------------------------------------------------------
@@ -80,19 +94,6 @@ module.exports = {
     |
     */
     etag: false
-  },
-
-  views: {
-    /*
-    |--------------------------------------------------------------------------
-    | Cache Views
-    |--------------------------------------------------------------------------
-    |
-    | Define whether or not to cache the compiled view. Set it to true in
-    | production to optimize view loading time.
-    |
-    */
-    cache: Env.get('CACHE_VIEWS', true)
   },
 
   static: {

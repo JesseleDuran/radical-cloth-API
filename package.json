@@ -1,8 +1,8 @@
 {
-  "name": "adonis-fullstack-app",
+  "name": "adonis-api-app",
   "version": "4.1.0",
   "adonis-version": "4.1.0",
-  "description": "The fullstack application boilerplate for Adonisjs",
+  "description": "Adonisjs boilerplate for API server with pre-configured JWT",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
@@ -24,8 +24,6 @@
     "@adonisjs/framework": "^5.0.7",
     "@adonisjs/ignitor": "^2.0.6",
     "@adonisjs/lucid": "^5.0.4",
-    "@adonisjs/session": "^1.0.25",
-    "@adonisjs/shield": "^1.0.6",
     "mysql": "^2.16.0"
   },
   "devDependencies": {},
