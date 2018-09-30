@@ -4,7 +4,7 @@ const Schema = use('Schema')
 
 class ProductoSchema extends Schema {
   up () {
-    this.create('productos', (table) => {
+    this.create('producto', (table) => {
       table.increments()
       table.float('precio').unsigned()
       table.string('nombre', 254).notNullable().unique()
