@@ -4,7 +4,12 @@ const Producto = use('App/Models/Producto')
 class ProductoController {
 
     async index ({response}) {
-        let productos = await Producto.all()
+
+        const productos = await Producto
+        .query()
+        .with('imagenes')
+        .fetch()
+
         return response.json(productos)
     }
 

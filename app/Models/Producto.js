@@ -11,6 +11,10 @@ class Producto extends Model {
     static get primaryKey () {
         return 'id'
     }
+
+    imagenes () {
+        return this.hasMany('App/Models/Imagen', 'id', 'id')
+    }
 }
 
 module.exports = Producto
