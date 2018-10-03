@@ -37,7 +37,7 @@ class ProductoController {
     }
 
     async update ({params, request, response}) {
-        const productoInfo = request.only(['precio', 'nombre', 'dias_hacer', 'descripcion'])
+        let productoInfo = request.only(['precio', 'nombre', 'dias_hacer', 'descripcion'])
 
         const producto = await Producto.find(params.id)
         if (!producto) {
@@ -47,8 +47,18 @@ class ProductoController {
         producto.nombre = productoInfo.nombre
         producto.dias_hacer = productoInfo.dias_hacer
         producto.descripcion = productoInfo.descripcion
-
         await producto.save()
+        productoInfo = request.only(['imagenes'])
+
+        if(productoInfo.imagenes.length > 0) {
+            for(let imagen of productoInfo.imagenes) {
+                const newImagen = new Imagen()
+                newImagen.direccion_imagen = imagen.direccion_imagen
+                newImagen.producto_id = newProduct.id
+                await newImagen.save()
+            }
+        }
+
         return response.status(200).json(producto)
     }
 
