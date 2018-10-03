@@ -1,6 +1,7 @@
 'use strict'
 
 const Producto = use('App/Models/Producto')
+const Imagen = use('App/Models/Imagen')
 class ProductoController {
 
     async index ({response}) {
@@ -19,16 +20,19 @@ class ProductoController {
     }
 
     async store ({request, response}) {
-        const productoInfo = request.only(['precio', 'nombre', 'dias_hacer', 'descripcion'])
+        let productoInfo = request.only(['precio', 'nombre', 'dias_hacer', 'descripcion'])
 
-        const producto = new Producto()
-        producto.precio = productoInfo.precio
-        producto.nombre = productoInfo.nombre
-        producto.dias_hacer = productoInfo.dias_hacer
-        producto.descripcion = productoInfo.descripcion
+        const newProduct = await Producto.create(productoInfo)
+        productoInfo = request.only(['imagenes'])
 
-        await producto.save()
-        return response.status(201).json(producto)
+        for(let imagen of productoInfo.imagenes) {
+            const newImagen = new Imagen()
+            newImagen.direccion_imagen = imagen.direccion_imagen
+            newImagen.producto_id = newProduct.id
+            await newImagen.save()
+        }
+
+        return response.status(201).json(newProduct)
     }
 
     async update ({params, request, response}) {
