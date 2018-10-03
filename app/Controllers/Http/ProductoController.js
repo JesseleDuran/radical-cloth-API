@@ -25,13 +25,14 @@ class ProductoController {
         const newProduct = await Producto.create(productoInfo)
         productoInfo = request.only(['imagenes'])
 
-        for(let imagen of productoInfo.imagenes) {
-            const newImagen = new Imagen()
-            newImagen.direccion_imagen = imagen.direccion_imagen
-            newImagen.producto_id = newProduct.id
-            await newImagen.save()
+        if(productoInfo.imagenes.length > 0) {
+            for(let imagen of productoInfo.imagenes) {
+                const newImagen = new Imagen()
+                newImagen.direccion_imagen = imagen.direccion_imagen
+                newImagen.producto_id = newProduct.id
+                await newImagen.save()
+            }
         }
-
         return response.status(201).json(newProduct)
     }
 
