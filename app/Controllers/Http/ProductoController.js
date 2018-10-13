@@ -15,7 +15,8 @@ class ProductoController {
 
     async show ({params, response}) {
         const producto = await Producto.find(params.id)
-        return response.json(producto)
+        const producto_imagenes = await producto.imagenes().fetch()
+        return response.json({producto, 'imagenes': producto_imagenes})
     }
 
     async store ({request, response}) {

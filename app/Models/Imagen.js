@@ -8,7 +8,7 @@ class Imagen extends Model {
         return 'imagenes_productos'
     }
 
-    producto () {
+    producto() {
         return this.belongsTo('App/Models/Producto', 'id', 'id')
     }
 }

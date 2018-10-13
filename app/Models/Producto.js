@@ -12,8 +12,8 @@ class Producto extends Model {
         return 'id'
     }
 
-    imagenes () {
-        return this.hasMany('App/Models/Imagen', 'id', 'id')
+    imagenes() {
+        return this.hasMany('App/Models/Imagen', 'id', 'producto_id')
     }
 }
 
