@@ -21,17 +21,17 @@ Route.get('/', () => {
 })
 
 Route.group(() => {
-  Route.post('/save', 'ProductoController.store')
+  Route.post('/save', 'ProductoController.store').middleware(['admin', 'auth'])
   Route.get('/getAll', 'ProductoController.index')
   Route.get('/:id', 'ProductoController.show')
-  Route.put('/:id', 'ProductoController.update')
-  Route.delete('/:id', 'ProductoController.delete')
-  Route.post('/saveImage', 'ProductoController.storeFile')
+  Route.put('/:id', 'ProductoController.update').middleware(['admin', 'auth'])
+  Route.delete('/:id', 'ProductoController.delete').middleware(['admin', 'auth'])
+  Route.post('/saveImage', 'ProductoController.storeFile').middleware(['admin', 'auth'])
 }).prefix('/producto')
 
 Route.post('/register', 'Auth/UserController.register')
 Route.post('/login', 'Auth/UserController.login')
-Route.get('/logout', 'Auth/UserController.logout')
+Route.get('/logout', 'Auth/UserController.logout').middleware(['auth'])
 
 
 

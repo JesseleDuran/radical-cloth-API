@@ -34,7 +34,6 @@ class ProductoController {
                 await newImagen.save()
             }
         }     
-        
         return response.status(201).json({'producto': newProduct, 'imagenes': filesNames})
     }
 
@@ -52,16 +51,14 @@ class ProductoController {
                 }
             }
         }
-            
         await productoPics.moveAll(Helpers.tmpPath('productos'))
-        
         if (!productoPics.movedAll()) {
             return response.status(404).json({error: 'Files did not were updated'})
         }
         return names
     }
 
-    //TODO: fix
+    //TODO: fix for images edit
     async update ({params, request, response}) {
         let productoInfo = request.only(['precio', 'nombre', 'dias_hacer', 'descripcion'])
 

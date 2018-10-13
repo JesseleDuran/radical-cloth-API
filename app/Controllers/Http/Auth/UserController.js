@@ -6,13 +6,11 @@ class UserController {
 
     async register ({request, response, auth}) {
         const userInfo = request.only(['username', 'password', 'email'])
-
         const user = new User()
         user.admin = false
         user.username = userInfo.username
         user.password = userInfo.password
         user.email = userInfo.email
-
         try {
             await user.save()
             let token = await auth.attempt(userInfo.username, userInfo.password)
@@ -33,14 +31,11 @@ class UserController {
                 return response.status(201).json({"auth":token, "user": user})
             }
         }
-
         return response.status(422).json({"message": "incorrect credentials"})
     }
 
     async logout ({auth, response}) {
-
         await auth.logout()
-
         return response.status(201).json({"success": true})
     }
 
