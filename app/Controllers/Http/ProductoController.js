@@ -61,6 +61,7 @@ class ProductoController {
         return names
     }
 
+    //TODO: fix
     async update ({params, request, response}) {
         let productoInfo = request.only(['precio', 'nombre', 'dias_hacer', 'descripcion'])
 
