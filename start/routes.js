@@ -26,6 +26,7 @@ Route.group(() => {
   Route.get('/:id', 'ProductoController.show')
   Route.put('/:id', 'ProductoController.update')
   Route.delete('/:id', 'ProductoController.delete')
+  Route.post('/saveImage', 'ProductoController.storeFile')
 }).prefix('/producto')
 
 Route.post('/register', 'Auth/UserController.register')
