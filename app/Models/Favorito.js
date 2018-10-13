@@ -11,6 +11,10 @@ class Favorito extends Model {
     user() {
         return this.belongsTo('App/Models/User', 'id', 'id')
     }
+
+    producto() {
+        return this.belongsTo('App/Models/Producto', 'producto_id', 'id')
+    }
 }
 
 module.exports = Favorito

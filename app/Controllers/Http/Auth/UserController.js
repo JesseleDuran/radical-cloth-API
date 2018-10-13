@@ -58,6 +58,11 @@ class UserController {
         }
     }
 
+    async indexFavorite ({response, auth}) {
+        const favorites = await auth.user.favoritos().with('producto').fetch()
+        return response.json(favorites)
+    }
+
 }
 
 module.exports = UserController
