@@ -29,7 +29,7 @@ class ProductoController {
             filesNames = await this.storeFile({request})
             for(let name of filesNames) {
                 const newImagen = new Imagen()
-                newImagen.direccion_imagen = name
+                newImagen.name_imagen = name
                 newImagen.producto_id = newProduct.id
                 await newImagen.save()
             }
@@ -78,7 +78,7 @@ class ProductoController {
         if(productoInfo.imagenes.length > 0) {
             for(let imagen of productoInfo.imagenes) {
                 const newImagen = new Imagen()
-                newImagen.direccion_imagen = imagen.direccion_imagen
+                newImagen.name_imagen = imagen
                 newImagen.producto_id = newProduct.id
                 await newImagen.save()
             }
@@ -92,7 +92,7 @@ class ProductoController {
             return response.status(404).json({data: 'Resource not found'})
         }
         await producto.delete()
-        return response.status(204).json(null)
+        return response.status(204).json('Success')
     }
 }
 
