@@ -29,6 +29,10 @@ Route.group(() => {
   Route.post('/saveImage', 'ProductoController.storeFile').middleware(['admin', 'auth'])
 }).prefix('/producto')
 
+Route.group(() => {
+  Route.post('/addFavorite', 'Auth/UserController.addFavorite').middleware(['auth'])
+}).prefix('/user')
+
 Route.post('/register', 'Auth/UserController.register')
 Route.post('/login', 'Auth/UserController.login')
 Route.get('/logout', 'Auth/UserController.logout').middleware(['auth'])
