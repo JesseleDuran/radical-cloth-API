@@ -7,7 +7,7 @@ class PedidoController {
 
     async create ({request, response, auth}) {
         try {
-            let pedidoInfo = request.only(['talla', 'color', 'producto_id'])
+            let pedidoInfo = request.only(['talla', 'color', 'producto_id', 'cantidad'])
             let fotoName = ''
             //find id of user admin
             const userAdmin = await User.query().where('admin', 1).first()
@@ -27,6 +27,7 @@ class PedidoController {
             pedido.talla = pedidoInfo.talla
             pedido.color = pedidoInfo.color
             pedido.foto = fotoName
+            pedido.cantidad = pedidoInfo.cantidad
             pedido.is_terminado = false
             await pedido.save()
             

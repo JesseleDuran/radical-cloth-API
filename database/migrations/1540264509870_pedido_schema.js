@@ -12,6 +12,7 @@ class PedidoSchema extends Schema {
       table.string('talla', 254).notNullable()
       table.string('color', 254).notNullable()
       table.string('foto', 254).notNullable()
+      table.integer('cantidad').notNullable()
       table.boolean('is_terminado').notNullable().defaultTo(false)
       table.timestamps()
     })
