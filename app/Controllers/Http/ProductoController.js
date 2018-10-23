@@ -51,7 +51,7 @@ class ProductoController {
                 }
             }
         }
-        await productoPics.moveAll(Helpers.tmpPath('productos'))
+        await productoPics.moveAll(Helpers.publicPath('productos'))
         if (!productoPics.movedAll()) {
             return response.status(404).json({error: 'Files did not were updated'})
         }

@@ -7,7 +7,6 @@ class PedidoController {
 
     async create ({request, response, auth}) {
         let pedidoInfo = request.only(['talla', 'color'])
-
         //find id of user admin
         const userAdmin = await User.query().where('admin', 1).first()
         const fotoName = await this.storeFile({request})
@@ -36,17 +35,18 @@ class PedidoController {
             size: '60mb'
         })
         const name = new Date().getTime() + '.' + productoPic.subtype
-        await productoPic.move(Helpers.tmpPath('personalizados'), {
+        await productoPic.move(Helpers.publicPath('personalizados'), {
             name: name,
             overwrite: true
         })
         
         if (!productoPic.moved()) {
-            return response.status(404).json({error: 'Files did not were updated'})
+            return response.status(404).json({error: 'File did not update'})
         }
-        return name
-        
+        return name 
     }
+
+
 }
 
 module.exports = PedidoController
