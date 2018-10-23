@@ -31,6 +31,7 @@ Route.group(() => {
 
 Route.group(() => {
   Route.post('/addFavorite', 'Auth/UserController.addFavorite').middleware(['auth'])
+  Route.delete('/deleteFavorite/:id', 'Auth/UserController.deleteFavorite').middleware(['auth'])
   Route.get('/indexFavorite', 'Auth/UserController.indexFavorite').middleware(['auth'])
 }).prefix('/user')
 

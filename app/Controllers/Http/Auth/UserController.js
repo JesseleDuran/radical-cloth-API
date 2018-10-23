@@ -58,6 +58,20 @@ class UserController {
         }
     }
 
+    async deleteFavorite ({params, response, auth}) {
+        const productoId = params.id
+        const favorito = await Favorito.query().where('user_id', auth.user.id).where('producto_id', productoId).first()
+        if (!favorito) {
+            return response.status(404).json({data: 'Resource not found'})
+        }
+        try {
+            await favorito.delete()
+            return response.status(204).json('Success')
+        } catch (error) {
+            return response.status(401).send({"error": error.message})
+        }
+    }
+
     async indexFavorite ({response, auth}) {
         const favorites = await auth.user.favoritos().with('producto').fetch()
         return response.json(favorites)
