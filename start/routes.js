@@ -38,5 +38,9 @@ Route.post('/register', 'Auth/UserController.register')
 Route.post('/login', 'Auth/UserController.login')
 Route.get('/logout', 'Auth/UserController.logout').middleware(['auth'])
 
+Route.group(() => {
+  Route.post('/create', 'PedidoController.create').middleware(['auth'])
+}).prefix('/pedido')
+
 
 
