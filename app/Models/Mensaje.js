@@ -12,7 +12,7 @@ class Mensaje extends Model {
     }
 
     chat() {
-        return this.hasOne('App/Models/Chat', 'chat_id', 'id')
+        return this.belongsTo('App/Models/Chat', 'chat_id', 'id')
     }
 
     autor() {

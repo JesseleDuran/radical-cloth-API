@@ -23,6 +23,10 @@ class Chat extends Model {
     user2() {
         return this.belongsTo('App/Models/User', 'user_id_2', 'id')
     }
+
+    mensajes() {
+        return this.hasMany('App/Models/Mensaje', 'id', 'chat_id')
+    }
     
 }
 

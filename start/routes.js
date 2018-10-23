@@ -45,5 +45,10 @@ Route.group(() => {
   Route.get('/getAdmin', 'PedidoController.indexToAdmin').middleware(['auth', 'admin'])
 }).prefix('/pedido')
 
+Route.group(() => {
+  Route.post('/send', 'ChatController.send').middleware(['auth'])
+  Route.get('/index', 'ChatController.index').middleware(['auth'])
+}).prefix('/chat')
+
 
 
