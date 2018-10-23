@@ -1,0 +1,23 @@
+'use strict'
+
+const Model = use('Model')
+
+class Pedido extends Model {
+    static get table () {
+        return 'pedido'
+    }
+
+    static get primaryKey () {
+        return 'id'
+    }
+
+    cliente() {
+        return this.belongsTo('App/Models/User', 'cliente_id', 'id')
+    }
+
+    chat() {
+        return this.hasOne('App/Models/Chat', 'chat_id', 'id')
+    }
+}
+
+module.exports = Pedido

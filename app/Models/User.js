@@ -38,6 +38,10 @@ class User extends Model {
   favoritos() {
     return this.hasMany('App/Models/Favorito', 'id', 'user_id')
   }
+
+  pedidos() {
+    return this.hasMany('App/Models/Pedido', 'id', 'cliente_id')
+  }
 }
 
 module.exports = User
