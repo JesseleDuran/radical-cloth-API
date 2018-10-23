@@ -54,10 +54,11 @@ class PedidoController {
         return name 
     }
 
-    async index ({response}) {
+    async indexAuth ({response, auth}) {
         const pedidos = await Pedido
         .query()
         .with('chat')
+        .where('cliente_id', auth.user.id)
         .fetch()
         return response.json(pedidos)
     }
