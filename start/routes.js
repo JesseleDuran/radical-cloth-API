@@ -42,6 +42,7 @@ Route.get('/logout', 'Auth/UserController.logout').middleware(['auth'])
 Route.group(() => {
   Route.post('/create', 'PedidoController.create').middleware(['auth'])
   Route.get('/getFromAuth', 'PedidoController.indexAuth').middleware(['auth'])
+  Route.get('/getAdmin', 'PedidoController.indexToAdmin').middleware(['auth', 'admin'])
 }).prefix('/pedido')
 
 

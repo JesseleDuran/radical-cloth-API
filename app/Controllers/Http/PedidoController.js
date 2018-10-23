@@ -63,6 +63,15 @@ class PedidoController {
         return response.json(pedidos)
     }
 
+    async indexToAdmin ({response, request}) {
+        const pedidos = await Pedido
+        .query()
+        .where('is_terminado', request.get().is_terminado)
+        .with('chat')
+        .fetch()
+        return response.json(pedidos)
+    }
+
 
 }
 
