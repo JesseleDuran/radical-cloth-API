@@ -74,7 +74,16 @@ class PedidoController {
         return response.json(pedidos)
     }
 
-
+    async updateStatus ({response, request, params}) {
+        let pedidoInfo = request.only(['status'])
+        const pedido = await Pedido.find(params.id)
+        if (!pedido) {
+            return response.status(404).json({data: 'Resource not found'})
+        }
+        pedido.status = pedidoInfo.status
+        await pedido.save()
+        return response.status(200).json(pedido)
+    }
 }
 
 module.exports = PedidoController

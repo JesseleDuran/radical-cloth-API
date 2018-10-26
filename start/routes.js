@@ -43,6 +43,7 @@ Route.group(() => {
   Route.post('/create', 'PedidoController.create').middleware(['auth'])
   Route.get('/getFromAuth', 'PedidoController.indexAuth').middleware(['auth'])
   Route.get('/getAdmin', 'PedidoController.indexToAdmin').middleware(['auth', 'admin'])
+  Route.put('status/:id', 'PedidoController.updateStatus').middleware(['admin', 'auth'])
 }).prefix('/pedido')
 
 Route.group(() => {
