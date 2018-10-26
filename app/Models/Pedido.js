@@ -18,6 +18,10 @@ class Pedido extends Model {
     chat() {
         return this.hasOne('App/Models/Chat', 'chat_id', 'id')
     }
+
+    producto() {
+        return this.belongsTo('App/Models/Producto', 'producto_id', 'id')
+    }
 }
 
 module.exports = Pedido

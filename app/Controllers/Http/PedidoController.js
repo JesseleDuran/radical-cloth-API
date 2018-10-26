@@ -8,10 +8,11 @@ class PedidoController {
     async create ({request, response, auth}) {
         try {
             let pedidoInfo = request.only(['talla', 'color', 'producto_id', 'cantidad'])
+            const productoPic = request.file('imagen')
             let fotoName = ''
             //find id of user admin
             const userAdmin = await User.query().where('admin', 1).first()
-            if(!pedidoInfo.producto_id) {
+            if(productoPic) {
                 fotoName = await this.storeFile({request})
             }
             //create chat of pedido
@@ -58,8 +59,9 @@ class PedidoController {
     async indexAuth ({response, auth}) {
         const pedidos = await Pedido
         .query()
-        .with('chat')
         .where('cliente_id', auth.user.id)
+        .with('chat')
+        .with('producto')
         .fetch()
         return response.json(pedidos)
     }
@@ -69,6 +71,7 @@ class PedidoController {
         .query()
         .where('is_terminado', request.get().is_terminado)
         .with('chat')
+        .with('producto')
         .fetch()
         return response.json(pedidos)
     }

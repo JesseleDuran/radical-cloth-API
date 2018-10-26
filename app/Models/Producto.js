@@ -19,6 +19,10 @@ class Producto extends Model {
     favoritos() {
         return this.hasMany('App/Models/Favorito', 'id', 'producto_id')
     }
+
+    pedidos() {
+        return this.hasMany('App/Models/Pedido', 'id', 'producto_id')
+    }
 }
 
 module.exports = Producto
