@@ -29,7 +29,6 @@ class PedidoController {
             pedido.color = pedidoInfo.color
             pedido.foto = fotoName
             pedido.cantidad = pedidoInfo.cantidad
-            pedido.is_terminado = false
             await pedido.save()
             
             return response.status(201).json({'pedido': pedido, 'chat': chat})
@@ -69,7 +68,6 @@ class PedidoController {
     async indexToAdmin ({response, request}) {
         const pedidos = await Pedido
         .query()
-        .where('is_terminado', request.get().is_terminado)
         .with('chat')
         .with('producto')
         .fetch()

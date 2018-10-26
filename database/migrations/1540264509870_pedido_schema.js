@@ -13,7 +13,7 @@ class PedidoSchema extends Schema {
       table.string('color', 254).notNullable()
       table.string('foto', 254).notNullable()
       table.integer('cantidad').notNullable()
-      table.boolean('is_terminado').notNullable().defaultTo(false)
+      table.enu('status', ['negociacion', 'aceptado', 'rechazado', 'finalizado']).defaultTo('negociacion').notNullable()
       table.timestamps()
     })
   }
