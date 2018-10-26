@@ -70,6 +70,7 @@ class PedidoController {
         .query()
         .with('chat')
         .with('producto')
+        .with('cliente')
         .fetch()
         return response.json(pedidos)
     }
